@@ -1,6 +1,7 @@
 mod system;
 
-use declare::type_def::{Byte, SignedByte, Word, SignedWord};
+use crate::system::declare::type_def::{Byte, SignedByte, Word, SignedWord};
+use crate::system::cartridge::create_cartridge;
 
 fn main() {
     println!("Hello, world!" );
@@ -14,4 +15,7 @@ fn main() {
     println!("SignedByte {}", char_temp);
     println!("Word {}", word_temp);
     println!("SignedWord {}", signed_word_temp);
+
+    create_cartridge();
+
 }
