@@ -3,28 +3,25 @@ use std::fs::File;
 use std::io;
 use std::io::Read;
 
-trait CartridgeTrait
+pub struct Cartridge
 {
-    fn load_memory(&self);
-}
-
-struct Cartridge
-{
-    //memory : [Byte; 0x200000]
+    memory_vec : Vec<Byte>,
+    filename : String
 }
 
 
-impl CartridgeTrait for Cartridge {
-    fn load_memory( &self )
+impl Cartridge {
+    pub fn load_memory( self )
     {
+        println!("Memory Size : {} ", self.memory_vec.len());
+        println!("Filename : {}", self.filename );
     }
 }
 
 
-pub fn create_cartridge() -> io::Result<()>
+pub fn create_cartridge() -> io::Result<Cartridge>
 {
     println!(" buffer.len()");
-    let mut memory : [Byte; 0x200000] = [ 0; 0x200000 ];
     let mut file = File::open("rom/zelda.gb")?;
 
     let mut buffer : Vec<Byte> = Vec::new();
@@ -32,5 +29,5 @@ pub fn create_cartridge() -> io::Result<()>
 
     println!(" buffer.len() {}", buffer.len() );
 
-    Ok(())
+    Ok( Cartridge{ memory_vec: buffer, filename: "rom/zelda.gb".to_string() } )
 }
