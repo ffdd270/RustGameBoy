@@ -18,16 +18,12 @@ impl Cartridge {
     }
 }
 
-
 pub fn create_cartridge() -> io::Result<Cartridge>
 {
-    println!(" buffer.len()");
     let mut file = File::open("rom/zelda.gb")?;
-
     let mut buffer : Vec<Byte> = Vec::new();
-    file.read_to_end(&mut buffer)?;
 
-    println!(" buffer.len() {}", buffer.len() );
+    file.read_to_end(&mut buffer)?;
 
     Ok( Cartridge{ memory_vec: buffer, filename: "rom/zelda.gb".to_string() } )
 }

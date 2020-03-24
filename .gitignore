@@ -14,3 +14,4 @@ Cargo.lock
 
 /target
 rom
+SDL2.dll
